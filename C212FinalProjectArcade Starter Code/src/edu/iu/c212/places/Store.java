@@ -63,6 +63,7 @@ public class Store extends Place{
                     user.setInventory(inventory);
                     user.setBalance(user.getBalance() - j.getValue());
                     arcade.saveUsersToFile();
+                    System.out.println("Purchased!");
                 case "No":
                     onEnter(user);
             }
@@ -70,6 +71,26 @@ public class Store extends Place{
     }
 
     void sellHandler(User user){
-
+        List<Item> inventory = user.getInventory();
+        if (!inventory.isEmpty()) {
+            Item j = ConsoleUtils.printMenuToConsole("What would you like to sell?", inventory, true);
+            ArrayList<String> confirmation = new ArrayList<>();
+            confirmation.add("Yes"); confirmation.add("No");
+            String choice = ConsoleUtils.printMenuToConsole("You will receive 50% of the item's value. Are you sure you would like to sell this item?", confirmation, true);
+            switch(choice){
+                case "Yes":
+                    inventory.remove(j);
+                    user.setInventory(inventory);
+                    user.setBalance(user.getBalance() + 0.5*j.getValue());
+                    arcade.saveUsersToFile();
+                    System.out.println("Sold!");
+                case "No":
+                    onEnter(user);
+            }
+        }
+        else {
+            System.out.println("You don't have any items to sell!");
+            onEnter(user);
+        }
     }
 }
