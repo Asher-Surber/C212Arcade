@@ -3,6 +3,7 @@ package edu.iu.c212.utils;
 import edu.iu.c212.models.User;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -19,7 +20,10 @@ public class FileUtils {        //TODO
      * @param users The total list of all users
      */
     public static void writeUserDataToFile(List<User> users) throws IOException {
-
+        FileWriter w = new FileWriter(file);
+        for (int i = 0; i < users.size(); i++){
+            
+        }
     }
 
     /**
