@@ -7,6 +7,22 @@ public enum Item {
     PLUSHTOY("Plush Toy", 10.00), BALL("Ball", 5.00), STRINGBAG("Drawstring Bag", 12.00),
     FIGURINE("Figurine", 8.00), HAT("Hat", 15.00);
 
+    public String getReadableName() {
+        return readableName;
+    }
+
+    public void setReadableName(String readableName) {
+        this.readableName = readableName;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
     private String readableName;
     private double value;
 
