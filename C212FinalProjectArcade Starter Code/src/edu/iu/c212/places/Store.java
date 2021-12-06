@@ -21,6 +21,12 @@ public class Store extends Place{
 
     StoreActions actions;
 
+    public Store(){
+        this.placeName = "Store";
+        this.entryFee = 0.00;
+        this.isGame = false;
+    }
+
     @Override
     void onEnter(User user) {
         ArrayList<StoreActions> actionList = new ArrayList<>();

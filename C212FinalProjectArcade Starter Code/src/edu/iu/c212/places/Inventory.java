@@ -7,6 +7,12 @@ import java.util.ArrayList;
 
 public class Inventory extends Place{
 
+    public Inventory(){
+        this.placeName = "Inventory";
+        this.entryFee = 0.00;
+        this.isGame = false;
+    }
+
     @Override
     void onEnter(User user) {
         System.out.println("Hi, " + user.getUsername() + "! This is your inventory:");
