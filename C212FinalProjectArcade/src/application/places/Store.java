@@ -49,6 +49,7 @@ public class Store extends Place{
         assert j != null;
         if (user.getBalance() < j.getValue()){
             System.out.println("You don't have enough money for this item!");
+            onEnter(user);
         }
         else if (user.getInventory().size() == 3){
             System.out.println("Your inventory is full! Sell something first!");

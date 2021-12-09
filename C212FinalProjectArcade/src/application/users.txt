@@ -1,1 +1,2 @@
 ashandfire|1000.0|
+notashandfire|0.0|
