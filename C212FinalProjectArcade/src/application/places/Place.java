@@ -5,8 +5,9 @@ import application.models.User;
 
 public abstract class Place {
 
+    static Arcade arcade;
     String placeName;
-    Arcade arcade;
+    //Arcade arcade;
     double entryFee;
     boolean isGame;
 
@@ -39,5 +40,13 @@ public abstract class Place {
 
     public void setGame(boolean game) {
         isGame = game;
+    }
+
+//    public Arcade getArcade() {
+//        return arcade;
+//    }
+//
+    public static void setArcade(Arcade myArcade) {
+        arcade = myArcade;
     }
 }

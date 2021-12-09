@@ -22,7 +22,7 @@ public class Arcade implements IArcade{
     public Arcade(){
         this.allUsers = getUserSaveDataFromFile();
         this.currentUser = getUserOnArcadeEntry();
-        this.allPlaces = getAllPlaces();
+        this.allPlaces = IArcade.getAllPlaces();
         transitionArcadeState("Lobby");
     }
 
@@ -117,15 +117,18 @@ public class Arcade implements IArcade{
     }
 
 
-    @Override
-    public List<Place> getAllPlaces() {
-        ArrayList<Place> allPlaces = new ArrayList<>();
-        allPlaces.add(new Lobby());
-        allPlaces.add(new Store());
-        allPlaces.add(new Inventory());
-        //TODO add games
-        return allPlaces;
-    }
+//    @Override
+//    public static List<Place> getAllPlaces() {
+//        ArrayList<Place> allPlaces = new ArrayList<>();
+//        Lobby l = new Lobby();
+//        Store s = new Store();
+//        Inventory i = new Inventory();
+//        allPlaces.add(l);
+//        allPlaces.add(s);
+//        allPlaces.add(i);
+//        //TODO add games
+//        return allPlaces;
+//    }
 
     public User getCurrentUser() {
         return currentUser;
