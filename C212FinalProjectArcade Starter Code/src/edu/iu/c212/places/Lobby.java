@@ -12,7 +12,7 @@ public class Lobby extends Place{
     }
 
     @Override
-    void onEnter(User user) {
+    public void onEnter(User user) {
         ConsoleUtils.printMenuToConsole("Welcome to the C212 Arcade! Your balance is: " + user.getBalance() +
                 "\n", arcade.getAllPlaces(), true);
     }
