@@ -8,6 +8,7 @@ import application.places.Place;
 import application.places.Store;
 import application.utils.FileUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -27,13 +28,13 @@ public class Arcade implements IArcade{
 
     @Override
     public List<User> getUserSaveDataFromFile() {
-        List<User> userList = new ArrayList<User>();
+        List<User> userList = new ArrayList<>();
         try{
             userList = FileUtils.getUserDataFromFile();
-            return userList;
         }
         catch(Exception e){
-            System.out.println("File error");
+            //System.out.println("File error");
+            e.printStackTrace(System.out);
             System.exit(0);
         }
         return userList;
@@ -124,5 +125,25 @@ public class Arcade implements IArcade{
         allPlaces.add(new Inventory());
         //TODO add games
         return allPlaces;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public List<User> getAllUsers() {
+        return allUsers;
+    }
+
+    public void setAllUsers(List<User> allUsers) {
+        this.allUsers = allUsers;
+    }
+
+    public void setAllPlaces(List<Place> allPlaces) {
+        this.allPlaces = allPlaces;
     }
 }
