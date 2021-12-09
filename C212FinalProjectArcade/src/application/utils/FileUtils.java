@@ -71,7 +71,7 @@ public class FileUtils {
 //            for(String i : splitStr){
 //                System.out.println(i);
 //            }
-            System.out.println(splitStr.length);
+            //System.out.println(splitStr.length);
             User newUser = new User(splitStr[0], Double.parseDouble(splitStr[1]), inventory);
             userList.add(newUser);
         }

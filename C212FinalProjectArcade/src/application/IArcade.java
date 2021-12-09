@@ -17,7 +17,7 @@ public interface IArcade {
     User getUserOnArcadeEntry();
 
     static List<Place> getAllPlaces() {
-        ArrayList<Place> allPlaces = new ArrayList<>();
+        List<Place> allPlaces = new ArrayList<>();
         Lobby l = new Lobby();
         Store s = new Store();
         Inventory i = new Inventory();
