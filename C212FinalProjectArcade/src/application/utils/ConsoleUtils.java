@@ -11,8 +11,7 @@ public class ConsoleUtils {
      * This reads a line from the console using the scanner
      */
     public static String readLineFromConsole() {
-        String inputLine = scanner.nextLine();
-        return inputLine;
+        return scanner.nextLine();
     }
 
     /**
@@ -20,22 +19,28 @@ public class ConsoleUtils {
      * If the condition returns false, or else if this is not an integer, it will print the failure message and ask the user to input again.
      */
     public static int readIntegerLineFromConsoleOrElseComplainAndRetry(Function<Integer, Boolean> condition, String failureMessage) {
+        Integer inputParsed;
         try {
-            Integer inputParsed = Integer.parseInt(readLineFromConsole());
+            inputParsed = Integer.parseInt(readLineFromConsole());
 
             if (!condition.apply(inputParsed)){
                 System.out.println(failureMessage);
                 System.out.println("Try again");
                 readIntegerLineFromConsoleOrElseComplainAndRetry(condition, failureMessage);
-                return inputParsed;
             }
+//            else{
+//                System.out.println(failureMessage);
+//                System.out.println("Try again");
+//                readIntegerLineFromConsoleOrElseComplainAndRetry(condition, failureMessage);
+//            }
+            System.out.println(inputParsed);
+            return inputParsed;
         }
         catch(NumberFormatException e) {
             System.out.println(failureMessage);
             System.out.println("Try again");
-            readIntegerLineFromConsoleOrElseComplainAndRetry(condition, failureMessage);
+            return readIntegerLineFromConsoleOrElseComplainAndRetry(condition, failureMessage);
         }
-        return 0;
     }
 
     /**
@@ -54,8 +59,8 @@ public class ConsoleUtils {
 
         if (shouldUserSelectAnOption) {
             System.out.println("Please select an option by its number:");
-            int enteredIndex = readIntegerLineFromConsoleOrElseComplainAndRetry(number -> number - 1 >= 0 && number - 1 < options.size(), "You need to enter a valid option") - 1;
-            return options.get(enteredIndex);
+            int enteredIndex = readIntegerLineFromConsoleOrElseComplainAndRetry(number -> number - 1 >= 0 && number - 1 < options.size(), "You need to enter a valid option");
+            return options.get(enteredIndex-1);
         } else return null;
     }
 }

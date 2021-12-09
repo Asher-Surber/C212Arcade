@@ -8,6 +8,7 @@ import application.places.Place;
 import application.places.Store;
 import application.utils.FileUtils;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class Arcade implements IArcade{
         this.allUsers = getUserSaveDataFromFile();
         this.currentUser = getUserOnArcadeEntry();
         this.allPlaces = IArcade.getAllPlaces();
+        Place.arcade = this;
         transitionArcadeState("Lobby");
     }
 
@@ -46,7 +48,7 @@ public class Arcade implements IArcade{
             FileUtils.writeUserDataToFile(allUsers);
         }
         catch(Exception e){
-            System.out.println("File error");
+            System.out.println("File error Arcade:50");
             System.exit(0);
         }
     }
@@ -57,28 +59,31 @@ public class Arcade implements IArcade{
         for(Place place : allPlaces){
             if(place.getPlaceName().equals(newPlaceNameToGoTo)){
                 newPlace = place;
+                break;
             }
         }
+        assert newPlace != null;
         if (currentUser.getBalance() >= newPlace.getEntryFee()){
             currentUser.setBalance(currentUser.getBalance() - newPlace.getEntryFee());
             try{
                 FileUtils.writeUserDataToFile(allUsers);
+                switch(newPlaceNameToGoTo){
+                    case "Lobby":
+                        Lobby l = new Lobby();
+                        l.onEnter(currentUser); break;
+                    case "Inventory":
+                        Inventory i = new Inventory();
+                        i.onEnter(currentUser); break;
+                    case "Store":
+                        Store s = new Store();
+                        s.onEnter(currentUser); break;
+                    //TODO add games
+                }
             }
-            catch(Exception e){
-                System.out.println("File error");
+            catch(IOException e){
+                System.out.println("File error Arcade:69");
+                e.printStackTrace();
                 System.exit(0);
-            }
-            switch(newPlace.getPlaceName()){
-                case "Lobby":
-                    Lobby l = new Lobby();
-                    l.onEnter(currentUser); break;
-                case "Inventory":
-                    Inventory i = new Inventory();
-                    i.onEnter(currentUser); break;
-                case "Store":
-                    Store s = new Store();
-                    s.onEnter(currentUser); break;
-                //TODO add games
             }
         }
         else{
@@ -109,26 +114,12 @@ public class Arcade implements IArcade{
             FileUtils.writeUserDataToFile(allUsers);
         }
         catch(Exception e){
-            System.out.println("File error");
+            System.out.println("File error Arcade:113");
             System.exit(0);
         }
         System.out.println("Welcome to the C212 Arcade, " + username + "!");
         return newUser;
     }
-
-
-//    @Override
-//    public static List<Place> getAllPlaces() {
-//        ArrayList<Place> allPlaces = new ArrayList<>();
-//        Lobby l = new Lobby();
-//        Store s = new Store();
-//        Inventory i = new Inventory();
-//        allPlaces.add(l);
-//        allPlaces.add(s);
-//        allPlaces.add(i);
-//        //TODO add games
-//        return allPlaces;
-//    }
 
     public User getCurrentUser() {
         return currentUser;

@@ -15,7 +15,9 @@ public class Lobby extends Place{
 
     @Override
     public void onEnter(User user) {
-        ConsoleUtils.printMenuToConsole("Welcome to the C212 Arcade! Your balance is: " + user.getBalance() +
+        Place newPlace = ConsoleUtils.printMenuToConsole("Welcome to the C212 Arcade! Your balance is: " + user.getBalance() +
                 "\n", IArcade.getAllPlaces(), true);
+        assert newPlace != null;
+        arcade.transitionArcadeState(newPlace.getPlaceName());
     }
 }
