@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class FileUtils {
-    private static File file = new File("C:\\Users\\Asher\\C212FinalRepo\\C212FinalProjectArcade\\src\\application\\users.txt");
+    private static final File file = new File("C:\\Users\\Asher\\C212FinalRepo\\C212FinalProjectArcade\\src\\application\\users.txt");
 
     // line format:
     // user_name|balance|item1,item2,item3
