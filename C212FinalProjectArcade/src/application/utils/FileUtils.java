@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class FileUtils {
-    private static File file = new File("src/edu.iu.c212.utils.users.txt");
+    private static File file = new File("application/users.txt");
 
     // line format:
     // user_name|balance|item1,item2,item3

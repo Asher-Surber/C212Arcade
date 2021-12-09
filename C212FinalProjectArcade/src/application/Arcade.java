@@ -19,17 +19,18 @@ public class Arcade implements IArcade{
     private List<Place> allPlaces;
 
     public Arcade(){
-        this.currentUser = getUserOnArcadeEntry();
         this.allUsers = getUserSaveDataFromFile();
+        this.currentUser = getUserOnArcadeEntry();
         this.allPlaces = getAllPlaces();
         transitionArcadeState("Lobby");
     }
 
     @Override
     public List<User> getUserSaveDataFromFile() {
-        List<User> userList = null;
+        List<User> userList = new ArrayList<User>();
         try{
             userList = FileUtils.getUserDataFromFile();
+            return userList;
         }
         catch(Exception e){
             System.out.println("File error");
