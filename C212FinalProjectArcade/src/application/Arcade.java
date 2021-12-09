@@ -8,6 +8,7 @@ import application.places.Place;
 import application.places.Store;
 import application.utils.FileUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -21,19 +22,19 @@ public class Arcade implements IArcade{
     public Arcade(){
         this.allUsers = getUserSaveDataFromFile();
         this.currentUser = getUserOnArcadeEntry();
-        this.allPlaces = getAllPlaces();
+        this.allPlaces = IArcade.getAllPlaces();
         transitionArcadeState("Lobby");
     }
 
     @Override
     public List<User> getUserSaveDataFromFile() {
-        List<User> userList = new ArrayList<User>();
+        List<User> userList = new ArrayList<>();
         try{
             userList = FileUtils.getUserDataFromFile();
-            return userList;
         }
         catch(Exception e){
-            System.out.println("File error");
+            //System.out.println("File error");
+            e.printStackTrace(System.out);
             System.exit(0);
         }
         return userList;
@@ -116,13 +117,36 @@ public class Arcade implements IArcade{
     }
 
 
-    @Override
-    public List<Place> getAllPlaces() {
-        ArrayList<Place> allPlaces = new ArrayList<>();
-        allPlaces.add(new Lobby());
-        allPlaces.add(new Store());
-        allPlaces.add(new Inventory());
-        //TODO add games
-        return allPlaces;
+//    @Override
+//    public static List<Place> getAllPlaces() {
+//        ArrayList<Place> allPlaces = new ArrayList<>();
+//        Lobby l = new Lobby();
+//        Store s = new Store();
+//        Inventory i = new Inventory();
+//        allPlaces.add(l);
+//        allPlaces.add(s);
+//        allPlaces.add(i);
+//        //TODO add games
+//        return allPlaces;
+//    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public List<User> getAllUsers() {
+        return allUsers;
+    }
+
+    public void setAllUsers(List<User> allUsers) {
+        this.allUsers = allUsers;
+    }
+
+    public void setAllPlaces(List<Place> allPlaces) {
+        this.allPlaces = allPlaces;
     }
 }

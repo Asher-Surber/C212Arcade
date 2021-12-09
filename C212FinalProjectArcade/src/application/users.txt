@@ -1,1 +1,1 @@
-ashandfire|1000|
+ashandfire|1000.0|

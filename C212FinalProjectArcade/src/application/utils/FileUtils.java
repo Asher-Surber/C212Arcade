@@ -5,11 +5,12 @@ import application.models.User;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class FileUtils {
-    private static File file = new File("application/users.txt");
+    private static File file = new File("C:\\Users\\Asher\\C212FinalRepo\\C212FinalProjectArcade\\src\\application\\users.txt");
 
     // line format:
     // user_name|balance|item1,item2,item3
@@ -34,27 +35,47 @@ public class FileUtils {
     public static List<User> getUserDataFromFile() throws IOException {
         FileReader fr = new FileReader(file);
         LineNumberReader lr = new LineNumberReader(fr);
-        String l;
+        String l = "";
         ArrayList<User> userList = new ArrayList<>();
         ArrayList<Item> itemList = new ArrayList<>();
         Collections.addAll(itemList, Item.values());
         do{
             l = lr.readLine();
-            String[] splitStr = l.split("\\|");
+            String[] splitStr = l.split("\\|", -1);
             ArrayList<Item> inventory = new ArrayList<>();
-            String[] itemArr = splitStr[2].split(",");
-            for (int i = 0; i < 3; i++){
-                for(Item j : itemList){
-                    if(itemArr[i].equals(j.name())){
-                        inventory.add(j);
+            if(splitStr.length == 3){
+                String[] itemArr = splitStr[2].split(",");
+                List<String> il = Arrays.asList(itemArr);
+                switch(il.size()) {
+                    case 1:
+                        for (Item j : itemList) {
+                            if (il.get(0).equals(j.name())) {
+                                inventory.add(j);
+                                break;
+                            }
+                        }
                         break;
-                    }
+                    case 2:
+                    case 3:
+                        for (String str : il) {
+                            for (Item j : itemList) {
+                                if (il.get(il.indexOf(str)).equals(j.name())) {
+                                    inventory.add(j);
+                                    break;
+                                }
+                            }
+                        }
+                        break;
                 }
             }
+//            for(String i : splitStr){
+//                System.out.println(i);
+//            }
+            System.out.println(splitStr.length);
             User newUser = new User(splitStr[0], Double.parseDouble(splitStr[1]), inventory);
             userList.add(newUser);
         }
-        while (!l.equals(""));
+        while (lr.ready());
 
         return userList;
     }

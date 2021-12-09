@@ -23,7 +23,7 @@ dependencies {
 }
 
 application {
-    mainClass = 'edu.iu.c212.ArcadeMain'
+    mainClass = 'application.ArcadeMain'
 }
 
 run {

@@ -1,5 +1,7 @@
 package application.places;
 
+import application.Arcade;
+import application.IArcade;
 import application.models.User;
 import application.utils.ConsoleUtils;
 
@@ -14,6 +16,6 @@ public class Lobby extends Place{
     @Override
     public void onEnter(User user) {
         ConsoleUtils.printMenuToConsole("Welcome to the C212 Arcade! Your balance is: " + user.getBalance() +
-                "\n", arcade.getAllPlaces(), true);
+                "\n", IArcade.getAllPlaces(), true);
     }
 }
