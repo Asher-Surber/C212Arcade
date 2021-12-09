@@ -23,6 +23,7 @@ public class Arcade implements IArcade{
         this.allUsers = getUserSaveDataFromFile();
         this.currentUser = getUserOnArcadeEntry();
         this.allPlaces = IArcade.getAllPlaces();
+        Place.arcade = this;
         transitionArcadeState("Lobby");
     }
 
@@ -115,20 +116,6 @@ public class Arcade implements IArcade{
         System.out.println("Welcome to the C212 Arcade, " + username + "!");
         return newUser;
     }
-
-
-//    @Override
-//    public static List<Place> getAllPlaces() {
-//        ArrayList<Place> allPlaces = new ArrayList<>();
-//        Lobby l = new Lobby();
-//        Store s = new Store();
-//        Inventory i = new Inventory();
-//        allPlaces.add(l);
-//        allPlaces.add(s);
-//        allPlaces.add(i);
-//        //TODO add games
-//        return allPlaces;
-//    }
 
     public User getCurrentUser() {
         return currentUser;

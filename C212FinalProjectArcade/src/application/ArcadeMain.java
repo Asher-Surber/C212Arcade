@@ -7,7 +7,8 @@ import application.places.Store;
 
 public class ArcadeMain {
     public static void main(String[] args) {
-        Arcade arcade = new Arcade();
-        Place.setArcade(arcade);
+        Arcade arcade;
+        arcade = new Arcade();
+        //Place.arcade = arcade;
     }
 }

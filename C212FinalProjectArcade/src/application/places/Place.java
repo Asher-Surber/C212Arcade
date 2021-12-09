@@ -5,7 +5,7 @@ import application.models.User;
 
 public abstract class Place {
 
-    static Arcade arcade;
+    public static Arcade arcade;
     String placeName;
     //Arcade arcade;
     double entryFee;
@@ -45,7 +45,7 @@ public abstract class Place {
 //    public Arcade getArcade() {
 //        return arcade;
 //    }
-//
+
     public static void setArcade(Arcade myArcade) {
         arcade = myArcade;
     }
