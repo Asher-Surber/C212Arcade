@@ -28,7 +28,7 @@ public class Store extends Place{
     }
 
     @Override
-    void onEnter(User user) {
+    public void onEnter(User user) {
         ArrayList<StoreActions> actionList = new ArrayList<>();
         actionList.add(actions.BUY);
         actionList.add(actions.SELL);

@@ -14,7 +14,7 @@ public class Inventory extends Place{
     }
 
     @Override
-    void onEnter(User user) {
+    public void onEnter(User user) {
         System.out.println("Hi, " + user.getUsername() + "! This is your inventory:");
         ArrayList<Item> inventory = new ArrayList<>();
         inventory = (ArrayList<Item>) user.getInventory();
