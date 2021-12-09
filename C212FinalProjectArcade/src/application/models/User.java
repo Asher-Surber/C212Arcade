@@ -37,4 +37,18 @@ public class User {
     public void setInventory(List<Item> inventory) {
         this.inventory = inventory;
     }
+
+    @Override
+    public String toString(){
+        String usrnm = this.username;
+        String bal = this.balance + "";
+        String inv = "";
+        switch(this.inventory.size()){
+            case 0: break;
+            case 1: inv += this.inventory.get(0); break;
+            case 2: inv = inv + this.inventory.get(0) + "," + this.inventory.get(1); break;
+            case 3: inv = inv + this.inventory.get(0) + "," + this.inventory.get(1) + "," + this.inventory.get(2); break;
+        }
+        return usrnm + "|" + bal + "|" + inv;
+    }
 }
