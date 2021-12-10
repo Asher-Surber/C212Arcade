@@ -42,16 +42,20 @@ public class FileUtils {
         do{
             l = lr.readLine();
             String[] splitStr = l.split("\\|", -1);
+
             ArrayList<Item> inventory = new ArrayList<>();
             if(splitStr.length == 3){
                 String[] itemArr = splitStr[2].split(",");
                 List<String> il = Arrays.asList(itemArr);
                 switch(il.size()) {
+                    case 0 : break;
                     case 1:
-                        for (Item j : itemList) {
-                            if (il.get(0).equals(j.name())) {
-                                inventory.add(j);
-                                break;
+                        if(!il.get(0).equals("")){
+                            for (Item j : itemList) {
+                                if (il.get(0).substring(il.get(0).indexOf(": $")).equals(j.name())) {
+                                    inventory.add(j);
+                                    break;
+                                }
                             }
                         }
                         break;
@@ -59,7 +63,7 @@ public class FileUtils {
                     case 3:
                         for (String str : il) {
                             for (Item j : itemList) {
-                                if (il.get(il.indexOf(str)).equals(j.name())) {
+                                if (il.get(il.indexOf(str)).substring(il.get(il.indexOf(str)).indexOf(":")).equals(j.name())) {
                                     inventory.add(j);
                                     break;
                                 }

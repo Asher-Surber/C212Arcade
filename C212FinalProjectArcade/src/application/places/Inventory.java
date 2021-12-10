@@ -16,11 +16,11 @@ public class Inventory extends Place{
     @Override
     public void onEnter(User user) {
         System.out.println("Hi, " + user.getUsername() + "! This is your inventory:");
-        ArrayList<Item> inventory = new ArrayList<>();
+        ArrayList<Item> inventory;
         inventory = (ArrayList<Item>) user.getInventory();
         double netWorth = user.getBalance();
         for (int i = 0; i < inventory.size(); i++){
-            System.out.println(inventory.get(i).toString());
+            System.out.println(inventory.get(i));
             netWorth += inventory.get(i).getValue();
         }
         System.out.println("Your total net worth is: $" + netWorth);
