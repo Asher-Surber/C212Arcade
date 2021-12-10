@@ -6,6 +6,7 @@ import application.places.Inventory;
 import application.places.Lobby;
 import application.places.Place;
 import application.places.Store;
+import application.places.games.GuessTheNumber;
 import application.utils.FileUtils;
 
 import java.io.FileNotFoundException;
@@ -77,6 +78,9 @@ public class Arcade implements IArcade{
                     case "Store":
                         Store s = new Store();
                         s.onEnter(currentUser); break;
+                    case "Guess the Number":
+                        GuessTheNumber g = new GuessTheNumber();
+                        g.onEnter(currentUser); break;
                     //TODO add games
                 }
             }

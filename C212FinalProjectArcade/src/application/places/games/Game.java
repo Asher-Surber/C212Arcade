@@ -5,5 +5,5 @@ import application.places.Place;
 
 public abstract class Game extends Place {
 
-    public abstract void onEnter(User user);
+    //public abstract void onEnter(User user);
 }
