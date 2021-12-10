@@ -8,7 +8,7 @@ public class BlackjackGame extends Game {
 
 
     @Override
-    protected void onEnter(User user) {
+    public void onEnter(User user) {
 
     }
 }

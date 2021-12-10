@@ -8,6 +8,7 @@ import application.places.Place;
 import application.places.Store;
 import application.places.games.GuessTheNumber;
 import application.places.games.Trivia;
+import application.places.games.blackjack.BlackjackGame;
 import application.places.games.hangman.HangmanGame;
 import application.utils.FileUtils;
 
@@ -89,7 +90,9 @@ public class Arcade implements IArcade{
                     case "Hangman":
                         HangmanGame h = new HangmanGame();
                         h.onEnter(currentUser);
-                    //TODO add games
+                    case "Blackjack":
+                        BlackjackGame b = new BlackjackGame();
+                        b.onEnter(currentUser);
                 }
             }
             catch(IOException e){

@@ -7,6 +7,7 @@ import application.places.Place;
 import application.places.Store;
 import application.places.games.GuessTheNumber;
 import application.places.games.Trivia;
+import application.places.games.blackjack.BlackjackGame;
 import application.places.games.hangman.HangmanGame;
 
 import java.util.ArrayList;
@@ -27,13 +28,14 @@ public interface IArcade {
         GuessTheNumber g = new GuessTheNumber();
         Trivia t = new Trivia();
         HangmanGame h = new HangmanGame();
+        BlackjackGame b = new BlackjackGame();
         allPlaces.add(l);
         allPlaces.add(s);
         allPlaces.add(i);
         allPlaces.add(g);
         allPlaces.add(t);
         allPlaces.add(h);
-        //TODO add games
+        allPlaces.add(b);
         return allPlaces;
     }
 }
