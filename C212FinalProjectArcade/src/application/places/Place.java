@@ -11,7 +11,7 @@ public abstract class Place {
     protected double entryFee;
     protected boolean isGame;
 
-    abstract void onEnter(User user);
+    protected abstract void onEnter(User user);
 
     @Override
     public String toString(){
