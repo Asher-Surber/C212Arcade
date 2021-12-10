@@ -42,7 +42,7 @@ public class HangmanGame extends Game implements IHangmanGame {
     }
 
     @Override
-    protected void onEnter(User user) {
+    public void onEnter(User user) {
         System.out.print("Welcome to Hangman! You will be shown a blurred-out word, and you have 6 tries to guess\neither a letter or the word.\n");
         System.out.println("If you guess the word, you'll win $15.00! Good luck!");
 
