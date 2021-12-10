@@ -20,11 +20,11 @@ public class HangmanGame extends Game implements IHangmanGame {
 
     @Override
     public String getBlurredWord(List<Character> guesses, String word) {
-        String blurredWord = "";
+        String blurredWord = word;
         for(int i = 0; i < word.length(); i++){
             char l = word.charAt(i);
             if (!guesses.contains(l)){
-                blurredWord = word.replace(l,'*');
+                blurredWord = blurredWord.replaceAll(Character.toString(l),"*");
             }
         }
         return blurredWord;
@@ -54,12 +54,14 @@ public class HangmanGame extends Game implements IHangmanGame {
             String guess;
             int incorrect = 0;
             do{
-                System.out.println("Guess a letter! Guessed so far: " + guesses);
+                System.out.println("Guess a letter! Incorrect: " + incorrect + ". Guessed so far: " + guesses);
                 System.out.println(getBlurredWord(guesses, word));
                 guess = ConsoleUtils.readLineFromConsole();
 
                 if(guess.length() == 1){
-                    if(lex.contains((char)Integer.parseInt(guess))){
+                    char[] guessChars = new char[3];
+                    guess.getChars(0,1, guessChars, 0);
+                    if(lex.contains(guessChars[0])){
                         if(word.contains(guess)){
                             char lGuess = guess.charAt(0);
                             if(!guesses.contains(lGuess)){
