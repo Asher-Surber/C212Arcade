@@ -28,12 +28,7 @@ public class ConsoleUtils {
                 System.out.println("Try again");
                 readIntegerLineFromConsoleOrElseComplainAndRetry(condition, failureMessage);
             }
-//            else{
-//                System.out.println(failureMessage);
-//                System.out.println("Try again");
-//                readIntegerLineFromConsoleOrElseComplainAndRetry(condition, failureMessage);
-//            }
-            System.out.println(inputParsed);
+            //System.out.println(inputParsed);
             return inputParsed;
         }
         catch(NumberFormatException e) {
