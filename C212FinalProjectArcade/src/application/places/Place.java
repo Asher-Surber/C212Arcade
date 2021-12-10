@@ -6,10 +6,10 @@ import application.models.User;
 public abstract class Place {
 
     public static Arcade arcade;
-    String placeName;
+    protected String placeName;
     //Arcade arcade;
-    double entryFee;
-    boolean isGame;
+    protected double entryFee;
+    protected boolean isGame;
 
     abstract void onEnter(User user);
 
