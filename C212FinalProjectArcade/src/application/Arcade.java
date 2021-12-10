@@ -8,6 +8,7 @@ import application.places.Place;
 import application.places.Store;
 import application.places.games.GuessTheNumber;
 import application.places.games.Trivia;
+import application.places.games.hangman.HangmanGame;
 import application.utils.FileUtils;
 
 import java.io.FileNotFoundException;
@@ -84,7 +85,10 @@ public class Arcade implements IArcade{
                         g.onEnter(currentUser); break;
                     case "Trivia":
                         Trivia t = new Trivia();
-                        t.onEnter(currentUser);
+                        t.onEnter(currentUser); break;
+                    case "Hangman":
+                        HangmanGame h = new HangmanGame();
+                        h.onEnter(currentUser);
                     //TODO add games
                 }
             }
