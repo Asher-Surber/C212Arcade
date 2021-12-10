@@ -6,6 +6,7 @@ public class BlackjackPlayer extends BlackjackParticipant {
 
     public BlackjackPlayer(){
         ArrayList<String> deck = cards;
+        this.handTotals = new int[2];
         hit();
         hit();
     }
