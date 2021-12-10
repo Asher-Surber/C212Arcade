@@ -52,15 +52,55 @@ public class HangmanGame extends Game implements IHangmanGame {
             List<Character> guesses = new ArrayList<>();
             getBlurredWord(guesses, word);
             String guess;
+            int incorrect = 0;
             do{
+                System.out.println("Guess a letter! Guessed so far: " + guesses);
+                System.out.println(getBlurredWord(guesses, word));
                 guess = ConsoleUtils.readLineFromConsole();
+
                 if(guess.length() == 1){
-                    if(word.contains(guess)){
-                        char lGuess = guess.charAt(0);
+                    if(lex.contains((char)Integer.parseInt(guess))){
+                        if(word.contains(guess)){
+                            char lGuess = guess.charAt(0);
+                            if(!guesses.contains(lGuess)){
+                                guesses.add(lGuess);
+                            }
+                            System.out.println("Correct, the word does contain the letter " + guess + "!");
+                        }
+                        else{
+                            System.out.println("Sorry, no " + guess + " in the word!");
+                            char lGuess = guess.charAt(0);
+                            if(!guesses.contains(lGuess)){
+                                guesses.add(lGuess);
+                                incorrect++;
+                            }
+                        }
+                    }
+                    else{
+                        System.out.print("Please enter only lowercase letters of the English alphabet.\nThis counts as 1 incorrect guess.\n");
+                        incorrect++;
                     }
                 }
+                else{
+                    System.out.println("Please enter only one character. This counts as 1 incorrect guess.");
+                    incorrect++;
+                }
             }
-            while(guesses.size() < 6 && !guess.equalsIgnoreCase(word));
+            while(incorrect < 6 && !getBlurredWord(guesses,word).equals(word));
+
+            if(incorrect == 6){
+                System.out.println("Sorry, you didn't get it. The word was: " + word + ". Better luck next time!");
+                arcade.saveUsersToFile();
+                System.out.println("Returning to Lobby...");
+                arcade.transitionArcadeState("Lobby");
+            }
+            else if(getBlurredWord(guesses, word).equals(word)){
+                System.out.println("Congratulations, you got it! The word was: " + word + ". You've won $15!");
+                user.setBalance(user.getBalance() + 15.00);
+                arcade.saveUsersToFile();
+                System.out.println("Returning to Lobby...");
+                arcade.transitionArcadeState("Lobby");
+            }
         }
         catch(IOException e){
             System.out.println("Problem getting word");
